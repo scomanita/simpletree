@@ -2,6 +2,8 @@ package ro.comanitza.simpletree;
 
 /**
  *
+ * Pair class that represents the info gain in the process of calculating the best info yielding field
+ *
  * @author comanitza
  */
 class InformationGainPair {

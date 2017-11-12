@@ -8,6 +8,12 @@ import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *
+ * Basic usage test
+ *
+ * @author comanitza
+ */
 public class SimpleTreeTest {
 
     private final MethodHandles.Lookup lookup = MethodHandles.lookup();

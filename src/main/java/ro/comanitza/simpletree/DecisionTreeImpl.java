@@ -5,6 +5,8 @@ import java.util.*;
 
 /**
  *
+ * Default implementation of the {@link DecisionTree} contract
+ *
  * @author comanitza
  */
 public class DecisionTreeImpl<T extends Element> extends DecisionTreeBase<T> {
@@ -171,15 +173,25 @@ public class DecisionTreeImpl<T extends Element> extends DecisionTreeBase<T> {
 
         for (Map.Entry<String, List<T>> e: data.entrySet()) {
 
+            /*
+             * if it's a pure class based on the targeted field and the elements list, add it as a child
+             */
             if (isPureClass(e.getValue(), classFieldName)) {
                 nodes.put(e.getKey(), new Node(getValueFromInstance(classFieldName, String.class, e.getValue().get(0))));
             } else {
+
+                /*
+                 * if not a pure class, continue splitting
+                 */
                 Optional<String> bestInfoGainFieldOptional = findBestInformationGain (e.getValue(), omittedFields);
 
                 if (!bestInfoGainFieldOptional.isPresent()) {
                     continue;
                 }
 
+                /*
+                 * calls itself recursively to fetch all the nodes
+                 */
                 Node localNode = new Node();
                 localNode.setFieldName(bestInfoGainFieldOptional.get());
                 localNode.setChildren(generateChildrenNode (e.getValue(), classFieldName, omittedFields, bestInfoGainFieldOptional.get()));
