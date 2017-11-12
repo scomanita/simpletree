@@ -2,6 +2,12 @@ package ro.comanitza.simpletree;
 
 import java.util.Map;
 
+/**
+ *
+ * Class that represents the node of the {@link DecisionTree} implementations
+ *
+ * @author comanitza
+ */
 class Node {
     private String fieldName;
     private String transportation;

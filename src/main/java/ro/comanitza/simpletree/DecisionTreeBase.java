@@ -24,12 +24,12 @@ public abstract class DecisionTreeBase<T extends Element> implements DecisionTre
      *
      * Method to fetch the value for a particular field from a particular instance
      *
-     * @param fieldName
-     * @param type
-     * @param instance
-     * @param <U>
-     * @return
-     * @throws Throwable
+     * @param fieldName the name of the targeted field
+     * @param type the type of the field
+     * @param instance the instance to use
+     * @param <U> the return type/the field type
+     * @return the value of the field
+     * @throws Throwable generic error/exception
      */
     protected <U> U getValueFromInstance (final String fieldName, final Class<U> type, final Element instance) throws Throwable {
 
@@ -40,8 +40,10 @@ public abstract class DecisionTreeBase<T extends Element> implements DecisionTre
 
     /**
      *
-     * @param fieldName
-     * @return
+     * Compose the name for the standard getter method based on the provided field name
+     *
+     * @param fieldName the targete field name
+     * @return the getter method name
      */
     private String composeGetterMethodName (final String fieldName) {
         return "get" + (fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1));
@@ -51,10 +53,10 @@ public abstract class DecisionTreeBase<T extends Element> implements DecisionTre
      *
      * Determine if the provided list is pure, meaning all the instances have a particular field with the same value
      *
-     * @param elements
-     * @param classFieldName
-     * @return
-     * @throws Throwable
+     * @param elements the elements to test
+     * @param classFieldName the class field name
+     * @return true if it's pure class
+     * @throws Throwable generic exception/error
      */
     protected boolean isPureClass (final List<T> elements, final String classFieldName) throws Throwable {
 
@@ -90,12 +92,16 @@ public abstract class DecisionTreeBase<T extends Element> implements DecisionTre
      * Gini index is: 1 - (0.4^2 + 0.3^2 + 0.3^2)
      *
      * @param elements the list of elements to calculate the Gini index for
-     * @param fieldName
-     * @param classFieldName
-     * @return
-     * @throws Throwable
+     * @param fieldName the field name
+     * @param classFieldName the class field name
+     * @return the gini index
+     * @throws Throwable generic error/exception
      */
     protected double calculateSubTableGiniIndex (final List<T> elements, final String fieldName, final String classFieldName) throws Throwable {
+
+        if (elements == null || elements.isEmpty() || fieldName == null || fieldName.isEmpty() || classFieldName == null || classFieldName.isEmpty()) {
+            return 0;
+        }
 
         Map<String, Map<String, Integer>> data = new HashMap<>();
 

@@ -7,6 +7,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * Test util class
+ *
+ * @author comanitza
+ */
 public class TestUtil {
 
     private TestUtil () {}
